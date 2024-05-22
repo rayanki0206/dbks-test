@@ -16,8 +16,8 @@ jobs:
         with:
           terraform_version: "1.8.3"
 
-      - name: Terraform validate
-        run: terraform validate
+      - name: Terraform initialization
+        run: terraform init -upgrade
 
       - name: Terraform validate
         run: terraform validate
