@@ -38,7 +38,8 @@ data "azurerm_resources" "databricks" {
 # deploys databricks operations as per Dataproduct Spreadsheet
 data "azurerm_databricks_workspace" "dbs-ws" {
   name                = var.databricks_workspace_name
-  resource_group_name = local.dbks_rg_name
+  # resource_group_name = local.dbks_rg_name
+  resource_group_name = "sample"
 }
 
 
@@ -158,7 +159,8 @@ data "azurerm_data_factory" "spn" {
   provider            = azurerm.functional_area 
   count               = var.datafactory != "" ? 1 : 0
   name                = var.datafactory
-  resource_group_name = local.df_rg_name
+  # resource_group_name = local.df_rg_name
+  resource_group_name = "sample"
 }
 
 resource "databricks_service_principal" "data_factory" {
@@ -248,7 +250,8 @@ data "azurerm_key_vault" "keyvault" {
   provider            = azurerm.functional_area #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   count               = var.keyvault != "" ? 1 : 0
   name                = var.keyvault
-  resource_group_name = local.kv_rg_name
+  # resource_group_name = local.kv_rg_name
+  resource_group_name = "sample"
   # depends_on          = [module.keyvault, azurerm_key_vault_access_policy.tfadmin]
 }
 
