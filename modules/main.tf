@@ -203,40 +203,40 @@ locals {
 # admin_temp = tostring("${data.databricks_group.admins[0]}".acl_principal_id)
 }
 
-# resource "databricks_access_control_rule_set" "automation_sp_rule_set_user_admins" {
-#   provider = databricks.azure_account
-#   count = var.service_principal != "" && (var.ad_admins_group != "" || var.ad_developers_group != "") ? 1 : 0
+ resource "databricks_access_control_rule_set" "automation_sp_rule_set_user_admins" {
+   provider = databricks.azure_account
+   count = var.service_principal != "" && (var.ad_admins_group != "" || var.ad_developers_group != "") ? 1 : 0
   
-#   name     = "accounts/${local.account_id}/servicePrincipals/${databricks_service_principal.service_principal[0].application_id}/ruleSets/default"
-#   dynamic "grant_rules" {
-#     for_each = var.ad_admins_group != "" ? [1] : []
-#     content {
-#       principals = [data.databricks_group.admins[0].acl_principal_id]
-#       role       = "roles/servicePrincipal.user"
-#     }
-#   }
-#   dynamic  "grant_rules"  {
-#     for_each = var.ad_admins_group != "" ? [1] : []
-#     content {
-#     principals = [data.databricks_group.admins[0].acl_principal_id]
-#     role       = "roles/servicePrincipal.manager"
-#   }
-#   }
-#  dynamic "grant_rules" {
-#     for_each = var.ad_developers_group != "" ? [1] : []
-#     content {
-#       principals = [data.databricks_group.developers[0].acl_principal_id]
-#       role       = "roles/servicePrincipal.user"
-#     }
-#   }
-#   dynamic  "grant_rules"  {
-#     for_each = var.ad_developers_group != "" ? [1] : []
-#     content {
-#     principals = [data.databricks_group.developers[0].acl_principal_id]
-#     role       = "roles/servicePrincipal.manager"
-#   }
-#   }
-# }
+   name     = "accounts/${local.account_id}/servicePrincipals/${databricks_service_principal.service_principal[0].application_id}/ruleSets/default"
+   dynamic "grant_rules" {
+     for_each = var.ad_admins_group != "" ? [1] : []
+     content {
+       principals = [data.databricks_group.admins[0].acl_principal_id]
+       role       = "roles/servicePrincipal.user"
+     }
+   }
+   dynamic  "grant_rules"  {
+     for_each = var.ad_admins_group != "" ? [1] : []
+     content {
+     principals = [data.databricks_group.admins[0].acl_principal_id]
+     role       = "roles/servicePrincipal.manager"
+   }
+   }
+  dynamic "grant_rules" {
+     for_each = var.ad_developers_group != "" ? [1] : []
+     content {
+       principals = [data.databricks_group.developers[0].acl_principal_id]
+       role       = "roles/servicePrincipal.user"
+     }
+   }
+   dynamic  "grant_rules"  {
+     for_each = var.ad_developers_group != "" ? [1] : []
+     content {
+     principals = [data.databricks_group.developers[0].acl_principal_id]
+     role       = "roles/servicePrincipal.manager"
+   }
+   }
+ }
 
 
 
