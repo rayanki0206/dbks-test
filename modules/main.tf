@@ -10,9 +10,6 @@ provider "azurerm" {
   }
 }
 
-provider "random" {
- 
-}
 provider "azuread" {
   tenant_id = "ae78d6b1-0301-44e7-9e07-063a71208317"
 }
