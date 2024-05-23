@@ -19,7 +19,7 @@ provider "databricks" {
   alias                       = "azure_account"
   host                        = data.azurerm_databricks_workspace.dbs-ws.workspace_url
   azure_workspace_resource_id = data.azurerm_databricks_workspace.dbs-ws.id
-  token= var.databricks_token
+
   #account_id = local.account_id
   # account_id = data.azurerm_databricks_workspace.dbs-ws.id
   auth_type = "azure-cli"
