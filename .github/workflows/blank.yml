@@ -1,4 +1,4 @@
-name: Test dbks
+name: Test dbks new
 on:
   workflow_dispatch:
 jobs:
